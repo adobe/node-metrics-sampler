@@ -1,0 +1,26 @@
+{
+  "name": "@adobe/metrics-sampler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "description": "Library for collecting and summarizing metrics",
+  "author": {
+    "name": "Adobe Inc."
+  },
+  "repository": "adobe/node-metrics-sampler",
+  "dependencies": {
+    "datalib": "^1.9.2",
+    "flat": "^5.0.0",
+    "interval-promise": "^1.4.0"
+  },
+  "devDependencies": {
+    "@adobe/eslint-config-asset-compute": "^1.0.0",
+    "fs-extra": "^7.0.1",
+    "mocha": "^5.2.0",
+    "nock": "^11.7.0",
+    "nyc": "^14.1.1"
+  },
+  "scripts": {
+    "test": "nyc --reporter=html --reporter=text mocha test",
+    "posttest": "eslint ./"
+  }
+}
