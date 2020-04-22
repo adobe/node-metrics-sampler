@@ -2,13 +2,13 @@
 
 Library for collecting and gathering metrics
 
-## Installation
+### Installation
 
 ```bash
 npm install @adobe/node-metrics-sampler
 ```
 
-## Sampler Usage
+### Sampler Usage
 
 The Sampler can be used to gather metrics over a period of time. For example, let's say we want to collect OS metrics as we read files on our computer.
 
