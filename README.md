@@ -5,7 +5,7 @@ Library for collecting and gathering metrics
 ### Installation
 
 ```bash
-npm install @adobe/node-metrics-sampler
+npm install @adobe/metrics-sampler
 ```
 
 ### Sampler Usage
