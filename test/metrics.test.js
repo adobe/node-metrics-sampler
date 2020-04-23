@@ -140,7 +140,7 @@ describe("metrics", () => {
             }
         );
 
-        it('object array of objects, does not include unmatched object attributes', () => {
+        it('object array of objects, ignores the undefined attributes', () => {
             const summary = Metrics.summary([
                 {
                     counter: 2,
@@ -153,7 +153,33 @@ describe("metrics", () => {
                 },{
                     counter: 2,
                     constant: 5,
-                    extra: 2
+                    extra: 1
+                }
+            ]);
+            // limit stdev to 3 digits after the dot for comparison
+            summary.counter.stdev = Math.round(summary.counter.stdev * 1000) / 1000;
+            console.log(summary);
+            assert.deepStrictEqual(summary, {
+                counter: { min: 2, max: 5, mean: 3, stdev: 1.732, median: 2, q1: 2, q3: 3.5 },
+                constant: { min: 5, max: 5, mean: 5, stdev: 0, median: 5, q1: 5, q3: 5 },
+                extra: { min: 1, max: 1, mean: 1, stdev: 0, median: 1, q1: 1, q3: 1 }
+              });
+        });
+
+
+        it('object array of objects, ignores the matched attributes', () => {
+            const summary = Metrics.summary([
+                {
+                    counter: 2,
+                    constant: 5
+                }, {
+                    counter: 5,
+                    constant: 5,
+                    extra: 1
+                },{
+                    counter: 2,
+                    constant: 5,
+                    extra: 1
                 }
             ]);
             // limit stdev to 3 digits after the dot for comparison
@@ -163,8 +189,7 @@ describe("metrics", () => {
                 counter: { min: 2, max: 5, mean: 3, stdev: 1.732, median: 2, q1: 2, q3: 3.5 },
                 constant: { min: 5, max: 5, mean: 5, stdev: 0, median: 5, q1: 5, q3: 5 }
               });
-        }
-        );
+        });
 
         it('object-array contains periods', () => {
             const summary = Metrics.summary([
