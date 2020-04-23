@@ -27,7 +27,7 @@ function sampleFunction() {
     }
 }
 
-function assertInRange(actual, expected, range=1) {
+function assertInRange(actual, expected, range=2) {
     if (typeof actual === "object") {
         for (const element in actual) {
             assert.ok(actual[element] >= expected[element] - range, actual[element] <= expected[element] + range);
