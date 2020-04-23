@@ -27,7 +27,7 @@ function asyncTimeout(ms) {
 }
 
 function assertInRange(actual, expected, range=1) {
-    return assert.ok(actual >= expected - range, actual <= expected + range);
+    assert.ok(actual >= expected - range, actual <= expected + range);
 }
 
 describe("instrument", () => {

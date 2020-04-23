@@ -27,6 +27,16 @@ function sampleFunction() {
     }
 }
 
+function assertInRange(actual, expected, range=1) {
+    if (typeof actual === "object") {
+        for (const element in actual) {
+            assert.ok(actual[element] >= expected[element] - range, actual[element] <= expected[element] + range);
+        }
+    } else {
+        assert.ok(actual >= expected - range, actual <= expected + range);
+    }
+}
+
 describe("sampler", () => {
     it("counter-manual-8", async () => {
         const sampler = new Sampler(sampleFunction(), 0);
@@ -54,7 +64,7 @@ describe("sampler", () => {
         const summary = await sampler.finish();
         // limit stdev to 3 digits after the dot for comparison
         summary.stdev = Math.round(summary.stdev * 1000) / 1000;
-        assert.deepStrictEqual(summary, {
+        assertInRange(summary, {
             max: 8,
             mean: 4.5,
             median: 4.5,
@@ -134,7 +144,7 @@ describe("sampler", () => {
         await setTimeoutPromise(400);
         const result = await sampler.finish();
         assert.equal(typeof result, 'object'); // results should be an empty object because sampler function failed
-        assert.deepStrictEqual(result, {
+        assertInRange(result, {
             max: 1,
             mean: 1,
             median: 1,
@@ -153,7 +163,7 @@ describe("sampler", () => {
         const summary = await sampler.finish();
         // limit stdev to 3 digits after the dot for comparison
         summary.stdev = Math.round(summary.stdev * 1000) / 1000;
-        assert.deepStrictEqual(summary, {
+        assertInRange(summary, {
             max: 8,
             mean: 4.5,
             median: 4.5,
