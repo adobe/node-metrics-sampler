@@ -167,7 +167,7 @@ describe("metrics", () => {
         });
 
 
-        it('object array of objects, ignores the matched attributes', () => {
+        it('object array of objects, ignores the unmatched attributes', () => {
             const summary = Metrics.summary([
                 {
                     counter: 2,
