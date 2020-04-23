@@ -26,6 +26,10 @@ function asyncTimeout(ms) {
     })
 }
 
+function assertInRange(actual, expected, range=1) {
+    return assert.ok(actual >= expected - range, actual <= expected + range);
+}
+
 describe("instrument", () => {
     it("sync-func", async () => {
         const metrics = {};
@@ -166,12 +170,12 @@ describe("instrument", () => {
         assert.strictEqual(result, 1700);
         assert.strictEqual(metrics.name.end - metrics.name.start, metrics.name.duration);
         assert.strictEqual(metrics.name.min, 1);
-        assert.strictEqual(metrics.name.max, 8);
-        assert.strictEqual(metrics.name.mean, 4.5);
-        assert.strictEqual(Math.round(metrics.name.stdev * 1000) / 1000, 2.449);
-        assert.strictEqual(metrics.name.median, 4.5);
-        assert.strictEqual(metrics.name.q1, 2.75);
-        assert.strictEqual(metrics.name.q3, 6.25);
+        assertInRange(metrics.name.max, 8);
+        assertInRange(metrics.name.mean, 4.5);
+        assertInRange(Math.round(metrics.name.stdev * 1000) / 1000, 2.449);
+        assertInRange(metrics.name.median, 4.5);
+        assertInRange(metrics.name.q1, 2.75);
+        assertInRange(metrics.name.q3, 6.25);
         assert.strictEqual(metrics.name.result, 1700);
     })
     it("async-worker-sampler-class", async () => {
@@ -200,13 +204,13 @@ describe("instrument", () => {
         assert.strictEqual(result, 1700);
         assert.strictEqual(metrics.name.end - metrics.name.start, metrics.name.duration);
         assert.strictEqual(metrics.name.value.min, 1);
-        assert.strictEqual(metrics.name.value.max, 8);
-        assert.strictEqual(metrics.name.value.mean, 4.5);
-        assert.strictEqual(Math.round(metrics.name.value.stdev * 1000) / 1000, 2.449);
-        assert.strictEqual(metrics.name.value.median, 4.5);
-        assert.strictEqual(metrics.name.value.q1, 2.75);
-        assert.strictEqual(metrics.name.value.q3, 6.25);
+        assertInRange(metrics.name.value.max, 8);
+        assertInRange(metrics.name.value.mean, 4.5);
+        assertInRange(Math.round(metrics.name.value.stdev * 1000) / 1000, 2.449);
+        assertInRange(metrics.name.value.median, 4.5);
+        assertInRange(metrics.name.value.q3, 6.25);
+        assertInRange(metrics.name.value.q1, 2.75);
         assert.strictEqual(metrics.name.result, 1700);
-        assert.strictEqual(metrics.name.counter, 8);
+        assertInRange(metrics.name.counter, 8);
     })
 });
