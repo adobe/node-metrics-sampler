@@ -32,9 +32,9 @@ function assertInRange(actual, expected, range=2) {
     console.log('expected:', expected);
     if (typeof actual === "object") {
         for (const element in actual) {
-            console.log('actual[element] >= (expected[element] - range)', actual[element] >= (expected[element] - range));
-            console.log('actual[element] <= (expected[element] + range)', actual[element] <= (expected[element] + range));
-            assert.ok(actual[element] >= (expected[element] - range), actual[element] <= (expected[element] + range) );
+            if (!isNaN(actual[element])) { // ignore if NaN
+                assert.ok(actual[element] >= (expected[element] - range), actual[element] <= (expected[element] + range) );
+            }
         }
     } else {
         assert.ok(actual >= expected - range, actual <= expected + range);

@@ -26,7 +26,7 @@ function asyncTimeout(ms) {
     })
 }
 
-function assertInRange(actual, expected, range=1) {
+function assertInRange(actual, expected, range=2) {
     assert.ok(actual >= expected - range, actual <= expected + range);
 }
 
