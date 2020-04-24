@@ -28,6 +28,8 @@ function sampleFunction() {
 }
 
 function assertInRange(actual, expected, range=2) {
+    console.log('actual:', actual);
+    console.log('expected:', expected);
     if (typeof actual === "object") {
         for (const element in actual) {
             assert.ok(actual[element] >= expected[element] - range, actual[element] <= expected[element] + range);
