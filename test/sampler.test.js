@@ -31,9 +31,13 @@ function assertInRange(actual, expected, range=2) {
     console.log('actual:', actual);
     console.log('expected:', expected);
     if (typeof actual === "object") {
-        for (const element in actual) {
-            if (!isNaN(actual[element])) { // ignore if NaN
-                assert.ok(actual[element] >= (expected[element] - range), actual[element] <= (expected[element] + range) );
+        for (const i in actual) {
+            if (isNaN(actual[i]) && (isNaN(expected[i]) || expected[i] === 0)) {
+                // ignore check if actual element was NaN and expected element was 0.
+                // Some OS and node versions report NaN instead of 0 randomly
+            }
+            else {
+                assert.ok(actual[i] >= (expected[i] - range), actual[i] <= (expected[i] + range) );
             }
         }
     } else {
