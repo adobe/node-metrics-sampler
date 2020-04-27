@@ -1,3 +1,6 @@
+[![Version](https://img.shields.io/npm/v/@adobe/metrics-sampler.svg)](https://npmjs.org/package/@adobe/metrics-sampler)
+
+
 # node-metrics-sampler
 
 Library for collecting and gathering metrics
