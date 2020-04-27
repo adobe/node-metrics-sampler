@@ -68,20 +68,20 @@ describe("sampler", () => {
     it("counter-auto-8", async () => {
         const sampler = new Sampler(sampleFunction(), 200);
         sampler.start();
-        await setTimeoutPromise(1700);
+        await setTimeoutPromise(1000);
         const summary = await sampler.finish();
         // limit stdev to 3 digits after the dot for comparison
         summary.stdev = Math.round(summary.stdev * 1000) / 1000;
         assertInRange(summary, {
-            max: 8,
-            mean: 4.5,
-            median: 4.5,
             min: 1,
-            q1: 2.75,
-            q3: 6.25,
-            stdev: 2.449
+            max: 4,
+            mean: 2.5,
+            median: 2.5,
+            q1: 1.75,
+            q3: 3.25,
+            stdev: 1.291
         });
-    }).timeout(3000);
+    });
 
     it("should work with a sample function that returns a nested object", async () => {
         const sampler = new Sampler(() => {
@@ -95,7 +95,7 @@ describe("sampler", () => {
             };
         }, 200);
         await sampler.start();
-        await setTimeoutPromise(1700);
+        await setTimeoutPromise(1000);
         const summary = await sampler.finish();
         assert.deepStrictEqual(summary, 
             {
@@ -166,19 +166,19 @@ describe("sampler", () => {
     it("should do nothing on second call to `start`", async () => {
         const sampler = new Sampler(sampleFunction(), 200);
         sampler.start();
-        await setTimeoutPromise(1700);
+        await setTimeoutPromise(1000);
         sampler.start();
         const summary = await sampler.finish();
         // limit stdev to 3 digits after the dot for comparison
         summary.stdev = Math.round(summary.stdev * 1000) / 1000;
         assertInRange(summary, {
-            max: 8,
-            mean: 4.5,
-            median: 4.5,
             min: 1,
-            q1: 2.75,
-            q3: 6.25,
-            stdev: 2.449
+            max: 4,
+            mean: 2.5,
+            median: 2.5,
+            q1: 1.75,
+            q3: 3.25,
+            stdev: 1.291
         });
     })
 });

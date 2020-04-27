@@ -17,7 +17,8 @@
     "fs-extra": "^7.0.1",
     "mocha": "^5.2.0",
     "nock": "^11.7.0",
-    "nyc": "^14.1.1"
+    "nyc": "^14.1.1",
+    "semantic-release": "^17.0.7"
   },
   "license": "Apache-2.0",
   "keywords": [
@@ -26,6 +27,9 @@
     "sampler",
     "adobe"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha test",
     "posttest": "eslint ./"
