@@ -15,7 +15,7 @@ npm install @adobe/metrics-sampler
 
 The Sampler can be used to gather metrics over a period of time. For example, let's say we want to collect OS metrics as we read files on our computer.
 
-```
+```js
 // start sampler that will run every 200ms
 const sampler = new Sampler( () => {
 			return os.cpus();
@@ -26,7 +26,7 @@ const file = fs.readSync('/path/to/file');
 console.log(sampler.getValues());
 ```
 When we are done sampling, we can end the sampler interval and retrieve the metrics.
-```
+```js
 const metricsSummary = await sampler.finish();
 ```
 
