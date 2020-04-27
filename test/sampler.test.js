@@ -81,7 +81,7 @@ describe("sampler", () => {
             q3: 6.25,
             stdev: 2.449
         });
-    });
+    }).timeout(3000);
 
     it("should work with a sample function that returns a nested object", async () => {
         const sampler = new Sampler(() => {
