@@ -166,17 +166,17 @@ describe("instrument", () => {
                 return ++counter;
             },
             sampleInterval: () => 200
-        }, metrics, "name").execute(1700);
-        assert.strictEqual(result, 1700);
+        }, metrics, "name").execute(1000);
+        assert.strictEqual(result, 1000);
         assert.strictEqual(metrics.name.end - metrics.name.start, metrics.name.duration);
         assert.strictEqual(metrics.name.min, 1);
-        assertInRange(metrics.name.max, 8);
-        assertInRange(metrics.name.mean, 4.5);
-        assertInRange(Math.round(metrics.name.stdev * 1000) / 1000, 2.449);
-        assertInRange(metrics.name.median, 4.5);
-        assertInRange(metrics.name.q1, 2.75);
-        assertInRange(metrics.name.q3, 6.25);
-        assert.strictEqual(metrics.name.result, 1700);
+        assertInRange(metrics.name.max, 4);
+        assertInRange(metrics.name.mean, 2.5);
+        assertInRange(Math.round(metrics.name.stdev * 1000) / 1000, 1.291);
+        assertInRange(metrics.name.median, 2.5);
+        assertInRange(metrics.name.q1, 1.75);
+        assertInRange(metrics.name.q3, 3.25);
+        assert.strictEqual(metrics.name.result, 1000);
     })
     it("async-worker-sampler-class", async () => {
         const metrics = {};
@@ -200,17 +200,17 @@ describe("instrument", () => {
                 return this.samplingInterval;
             }
         }
-        const result = await instrument(new Worker(), metrics, "name").execute(1700);
-        assert.strictEqual(result, 1700);
+        const result = await instrument(new Worker(), metrics, "name").execute(1000);
+        assert.strictEqual(result, 1000);
         assert.strictEqual(metrics.name.end - metrics.name.start, metrics.name.duration);
         assert.strictEqual(metrics.name.value.min, 1);
-        assertInRange(metrics.name.value.max, 8);
-        assertInRange(metrics.name.value.mean, 4.5);
-        assertInRange(Math.round(metrics.name.value.stdev * 1000) / 1000, 2.449);
-        assertInRange(metrics.name.value.median, 4.5);
-        assertInRange(metrics.name.value.q3, 6.25);
-        assertInRange(metrics.name.value.q1, 2.75);
-        assert.strictEqual(metrics.name.result, 1700);
-        assertInRange(metrics.name.counter, 8);
+        assertInRange(metrics.name.value.max, 4);
+        assertInRange(metrics.name.value.mean, 2.5);
+        assertInRange(Math.round(metrics.name.value.stdev * 1000) / 1000, 1.291);
+        assertInRange(metrics.name.value.median, 2.5);
+        assertInRange(metrics.name.value.q3, 3.25);
+        assertInRange(metrics.name.value.q1, 1.75);
+        assert.strictEqual(metrics.name.result, 1000);
+        assertInRange(metrics.name.counter, 4);
     })
 });

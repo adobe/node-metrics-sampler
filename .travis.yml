@@ -24,5 +24,16 @@ node_js:
 install:
   - npm version
   - npm install
-script:
-  - npm test
+jobs:
+  include:
+    - script: npm test
+    - stage: release
+      node_js: lts/*
+      before_deploy: "echo 'Releasing to npm'"
+      deploy:
+        on:
+          branch: master
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
