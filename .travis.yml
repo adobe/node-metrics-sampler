@@ -34,6 +34,6 @@ jobs:
       deploy:
         on:
           branch: master
-        provider: npm
+        provider: script
         skip_cleanup: true
         script: npm run semantic-release
