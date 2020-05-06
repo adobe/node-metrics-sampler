@@ -13,8 +13,8 @@
     "interval-promise": "^1.4.0"
   },
   "devDependencies": {
-    "@adobe/eslint-config-asset-compute": "^1.0.0",
-    "fs-extra": "^7.0.1",
+    "@adobe/eslint-config-asset-compute": "^1.1.0",
+    "fs-extra": "^8.1.0",
     "mocha": "^5.2.0",
     "nock": "^11.7.0",
     "nyc": "^14.1.1",
