@@ -2,8 +2,5 @@ node_modules
 # Coverage directory used by tools like istanbul
 coverage
 
-# Other
-.dependencies-licenses.log
-
 # nyc test coverage
 .nyc_output
