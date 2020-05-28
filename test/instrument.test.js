@@ -1,14 +1,14 @@
 /*
-Copyright 2020 Adobe. All rights reserved.
-This file is licensed to you under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License. You may obtain a copy
-of the License at http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software distributed under
-the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
-OF ANY KIND, either express or implied. See the License for the specific language
-governing permissions and limitations under the License.
-*/
+ * Copyright 2020 Adobe. All rights reserved.
+ * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License. You may obtain a copy
+ * of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+ * OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
 
 /* eslint-env mocha */
 /* eslint-disable mocha/no-mocha-arrows */
@@ -21,9 +21,9 @@ const { instrument } = require("../lib/instrument");
 function asyncTimeout(ms) {
     return new Promise(resolve => {
         setTimeout(() => {
-            resolve(ms)
+            resolve(ms);
         }, ms);
-    })
+    });
 }
 
 function assertInRange(actual, expected, range=2) {
@@ -50,7 +50,7 @@ describe("instrument", () => {
         const metrics = {};
         try {
             await instrument(() => {
-                throw Error("error message")
+                throw Error("error message");
             }, metrics, "name").execute(100);
             assert.fail("line should not be reached");
         } catch (e) {
@@ -83,10 +83,10 @@ describe("instrument", () => {
         try {
             await instrument({
                 execute: () => {
-                    throw Error("error message")
+                    throw Error("error message");
                 },
                 metrics: (error) => {
-                    return { error }
+                    return { error };
                 }
             }, metrics, "name").execute(100);
             assert.fail("line should not be reached");
@@ -105,10 +105,10 @@ describe("instrument", () => {
         try {
             await instrument({
                 execute: async () => {
-                    throw Error("error message")
+                    throw Error("error message");
                 },
                 metrics: async (error) => {
-                    return { error }
+                    return { error };
                 }
             }, metrics, "name").execute(100);
             assert.fail("line should not be reached");
@@ -127,7 +127,7 @@ describe("instrument", () => {
         const result = await instrument({
             execute: arg => arg,
             metrics: (_, result, metrics) => {
-                return { result, metrics }
+                return { result, metrics };
             }
         }, metrics).execute(100);
         assert.strictEqual(result, 100);
@@ -143,7 +143,7 @@ describe("instrument", () => {
         const result = await instrument({
             execute: async arg => arg,
             metrics: async (_, result, metrics) => {
-                return { result, metrics }
+                return { result, metrics };
             }
         }, metrics).execute(100);
         assert.strictEqual(result, 100);
@@ -160,7 +160,7 @@ describe("instrument", () => {
         const result = await instrument({
             execute: asyncTimeout,
             metrics: (_, result) => {
-                return { result }
+                return { result };
             },
             sample: () => {
                 return ++counter;
@@ -177,7 +177,7 @@ describe("instrument", () => {
         assertInRange(metrics.name.q1, 1.75);
         assertInRange(metrics.name.q3, 3.25);
         assert.strictEqual(metrics.name.result, 1000);
-    })
+    });
     it("async-worker-sampler-class", async () => {
         const metrics = {};
         // ensure `this` is available in the methods
@@ -212,5 +212,5 @@ describe("instrument", () => {
         assertInRange(metrics.name.value.q1, 1.75);
         assert.strictEqual(metrics.name.result, 1000);
         assertInRange(metrics.name.counter, 4);
-    })
+    });
 });
