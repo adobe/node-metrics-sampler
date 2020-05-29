@@ -9,10 +9,6 @@
 # governing permissions and limitations under the License.
 
 language: node_js
-os:
-  - windows
-  - linux
-  - osx
 
 node_js:
   - "10"
@@ -24,6 +20,7 @@ node_js:
 install:
   - npm version
   - npm install
+
 jobs:
   include:
     - script: npm test
@@ -35,5 +32,7 @@ jobs:
           branch: master
         provider: script
         skip_cleanup: true
-        script:
-          - npx semantic-release
+        script: npx semantic-release
+
+after_success:
+  - npm run report-coverage

@@ -1,14 +1,14 @@
 /*
-Copyright 2020 Adobe. All rights reserved.
-This file is licensed to you under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License. You may obtain a copy
-of the License at http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software distributed under
-the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
-OF ANY KIND, either express or implied. See the License for the specific language
-governing permissions and limitations under the License.
-*/
+ * Copyright 2020 Adobe. All rights reserved.
+ * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License. You may obtain a copy
+ * of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+ * OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
 
 /* eslint-env mocha */
 /* eslint-disable mocha/no-mocha-arrows */
@@ -24,7 +24,7 @@ function sampleFunction() {
     let counter = 0;
     return () => {
         return ++counter;
-    }
+    };
 }
 
 function assertInRange(actual, expected, range=2) {
@@ -64,7 +64,7 @@ describe("sampler", () => {
             q3: 6.25,
             stdev: 2.449
         });
-    })
+    });
     it("counter-auto-8", async () => {
         const sampler = new Sampler(sampleFunction(), 200);
         sampler.start();
@@ -97,36 +97,36 @@ describe("sampler", () => {
         await sampler.start();
         await setTimeoutPromise(1000);
         const summary = await sampler.finish();
-        assert.deepStrictEqual(summary, 
+        assert.deepStrictEqual(summary,
             {
                 memory_containerUsage: {
-                  min: 6666,
-                  max: 6666,
-                  mean: 6666,
-                  stdev: 0,
-                  median: 6666,
-                  q1: 6666,
-                  q3: 6666
+                    min: 6666,
+                    max: 6666,
+                    mean: 6666,
+                    stdev: 0,
+                    median: 6666,
+                    q1: 6666,
+                    q3: 6666
                 },
                 memory_containerUsagePercentage: {
-                  min: 5.67657,
-                  max: 5.67657,
-                  mean: 5.67657,
-                  stdev: 0,
-                  median: 5.67657,
-                  q1: 5.67657,
-                  q3: 5.67657
+                    min: 5.67657,
+                    max: 5.67657,
+                    mean: 5.67657,
+                    stdev: 0,
+                    median: 5.67657,
+                    q1: 5.67657,
+                    q3: 5.67657
                 },
                 cpuacct_usage: {
-                  min: 100,
-                  max: 100,
-                  mean: 100,
-                  stdev: 0,
-                  median: 100,
-                  q1: 100,
-                  q3: 100
+                    min: 100,
+                    max: 100,
+                    mean: 100,
+                    stdev: 0,
+                    median: 100,
+                    q1: 100,
+                    q3: 100
                 }
-              });
+            });
     });
 
     it("should log error but not throw if sample function errors persistently", async () => {
@@ -180,5 +180,5 @@ describe("sampler", () => {
             q3: 3.25,
             stdev: 1.291
         });
-    })
+    });
 });
