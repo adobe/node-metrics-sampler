@@ -2,7 +2,7 @@
   "name": "@adobe/metrics-sampler",
   "version": "1.0.0",
   "main": "index.js",
-  "description": "Library for collecting and summarizing metrics",
+  "description": "Library for collecting and summarizing metrics_cicd",
   "author": {
     "name": "Adobe Inc."
   },
