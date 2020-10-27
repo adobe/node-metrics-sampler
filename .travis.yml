@@ -33,6 +33,9 @@ jobs:
         provider: script
         skip_cleanup: true
         script: npx semantic-release
+        
+after_script:
+  - npx @adobe/sizewatcher
 
 after_success:
   - npm run report-coverage
