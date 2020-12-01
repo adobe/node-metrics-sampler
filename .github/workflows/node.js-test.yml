@@ -28,6 +28,8 @@ jobs:
       run: npm ci
     - name: Test
       run: npm test
+    - name: Code coverage
+      run: npm run report-coverage
 
   sizewatcher:
 
@@ -36,10 +38,3 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: npx @adobe/sizewatcher
-  code-coverage:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - run: npm run report-coverage
