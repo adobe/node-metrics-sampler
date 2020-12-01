@@ -46,8 +46,7 @@ jobs:
         with:
           node-version: '12.19'
       - run: npm install
-      # - run: npm run semantic-release
-      - run: echo "released!"
+      - run: npm run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.ADOBE_BOT_NPM_TOKEN }}

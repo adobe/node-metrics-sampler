@@ -33,7 +33,7 @@
     "access": "public"
   },
   "scripts": {
-    "test": "echo 'hello' && nyc mocha --recursive --exit",
+    "test": "nyc mocha --recursive --exit",
     "posttest": "eslint ./ && license-checker --summary",
     "beautify": "eslint ./ --fix"
   }
