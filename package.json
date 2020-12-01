@@ -29,7 +29,8 @@
     "metrics",
     "sampling",
     "sampler",
-    "adobe"
+    "adobe",
+    "node"
   ],
   "publishConfig": {
     "access": "public"
