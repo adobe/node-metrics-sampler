@@ -35,11 +35,19 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: npx @adobe/sizewatcher
-  deploy:
-    runs-on: ubuntu-latest
+  semantic-release:
     needs: [build]
-    if: github.ref == 'refs/heads/master'
+    if: ${{  !contains(github.event.head_commit.message, '[skip ci]') && github.ref == 'refs/heads/master' }}
     steps:
-      - name: Deploy app
-        run: echo hi
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.19
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.19'
+      - run: npm install
+      # - run: npm run semantic-release
+      - run: echo "released!"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.ADOBE_BOT_NPM_TOKEN }}
 
