@@ -1,6 +1,6 @@
 {
   "name": "@adobe/metrics-sampler",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "description": "Library for collecting and summarizing metrics",
   "author": {
