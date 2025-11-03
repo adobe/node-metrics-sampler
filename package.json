@@ -13,7 +13,7 @@
     "interval-promise": "^1.4.0"
   },
   "overrides": {
-    "request" : {
+    "request": {
       "form-data": "^2.5.4"
     }
   },
